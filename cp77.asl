@@ -5,8 +5,6 @@ state("Cyberpunk2077")
 
 update
 {
-	//string x = Convert.ToString(current.loading);
-	//print(x);
 	vars.load = false;
 	if((current.loading != 70))
 	{
