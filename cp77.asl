@@ -1,24 +1,19 @@
 state("Cyberpunk2077")
 {
-    byte loading : 0x3CBF140;
+	byte loading : 0x3CBF140;
 }
 
-update
+init
 {
-	vars.load = false;
-	if((current.loading != 70))
-	{
-		vars.load = true;
-	}
-}
-
-
-exit
-{
-    timer.IsGameTimePaused = true;
+	timer.IsGameTimePaused = false;
 }
 
 isLoading
 {
-	return vars.load;
+	return current.loading != 70;
+}
+
+exit
+{
+	timer.IsGameTimePaused = true;
 }
