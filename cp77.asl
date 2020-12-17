@@ -1,14 +1,15 @@
-state("Cyberpunk2077")
-{
+state("Cyberpunk2077") {
 	byte loading : 0x3CBF140;
 }
 
-isLoading
-{
+init {
+	timer.IsGameTimePaused = false;
+}
+
+isLoading {
 	return current.loading != 70;
 }
 
-exit
-{
+exit {
 	timer.IsGameTimePaused = true;
 }
