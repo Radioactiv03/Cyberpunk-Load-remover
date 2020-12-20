@@ -25,8 +25,6 @@ update
 	{
 		vars.loading =(current.loading !=70);
 	}
-	print(Convert.ToString(current.loading));
-	print(version);
 }
 
 exit
