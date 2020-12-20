@@ -1,6 +1,6 @@
 state("Cyberpunk2077")
 {
-    byte loading : 0x3CBF140;
+    int loading : 0x3C7EF74;
 }
 
 exit
@@ -10,5 +10,5 @@ exit
 
 isLoading
 {
-	return current.loading != 70;
+	return (current.loading != 1694526817);
 }
