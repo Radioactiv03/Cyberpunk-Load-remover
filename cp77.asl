@@ -1,6 +1,6 @@
 state("Cyberpunk2077","1.05")
 {
-    int loading : 0x3C7EF74;
+	byte loading : 0x3C7EF75;
 }
 
 state("Cyberpunk2077","1.04")
@@ -18,7 +18,7 @@ update
 {
 	if(version == "1.05")
 	{
-		vars.loading =(current.loading !=1694526817);
+		vars.loading =(current.loading !=109);
 	}
 	
 	if(version == "1.04")
