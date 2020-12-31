@@ -10,3 +10,6 @@ Patch notes:
 
 23/12/20
 1.06 patch comes out- Load remover patched to work for new update
+
+31/12/20
+Autosplitter 0.1 is available
