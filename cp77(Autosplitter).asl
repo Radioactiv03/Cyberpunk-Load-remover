@@ -22,13 +22,6 @@ startup
 		{"q000_street_kid","Street Kid"},
 		{"q115","Nocturne OP55N1"}
 	};
-	
-	// split on Missions
-	settings.Add("missions", true);
-		// Add missions to setting list
-	foreach (var script in vars.missionname) {
-		settings.Add(script.Key, true, script.Value, "missions");
-	}
 }
 
 init
@@ -60,10 +53,6 @@ update
 	{
 		vars.loading =(current.loading !=70);
 	}
-	//print(Convert.ToString(current.loading));
-	//print(version);
-	//vars.m = Convert.ToString(current.mission);
-	//print(vars.m);
 }
 
 exit
