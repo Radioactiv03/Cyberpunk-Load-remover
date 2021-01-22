@@ -1,6 +1,6 @@
 # Cyberpunk-Load-remover
 
-The Load remover is currently for Steam & gog version 1.06
+The Load remover is currently for Steam & gog version 1.04-1.1
 I will be updating on subsequent version if it breaks.
 
 Patch notes:
