@@ -13,3 +13,7 @@ Patch notes:
 
 31/12/20
 Autosplitter 0.1 is available
+
+
+22/02/21
+Patch 1.1 Comes out- Load remover patched with help from Meta 
