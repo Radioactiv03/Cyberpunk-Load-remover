@@ -1,18 +1,19 @@
-
-state("Cyberpunk2077","1.1")
+state("Cyberpunk2077", "1.1")
 {
 	byte loading : 0x3C80F00;
 }
-state("Cyberpunk2077","1.06")
+
+state("Cyberpunk2077", "1.06")
 {
 	byte loading : 0x3C7EF40;
 }
 
-state("Cyberpunk2077","1.05")
+state("Cyberpunk2077", "1.05")
 {
-    int loading : 0x3C7EF75;
+	int loading : 0x3C7EF75;
 }
-state("Cyberpunk2077","1.04")
+
+state("Cyberpunk2077", "1.04")
 {
 	byte loading : 0x3CBF140;
 }
@@ -22,39 +23,28 @@ init
 {
 	version = modules.First().FileVersionInfo.ProductVersion;
 	vars.loading = false;
+	
+	//timer.IsGameTimePaused = false;
 }
 
 update
 {
-	if(version == "1.1")
-	{
-		vars.loading =(current.loading !=70);
+	switch (version) {
+		case "1.04": case "1.06": case "1.11":
+			vars.loading = current.loading != 70;
+			break;
+		case "1.05":
+			vars.loading = current.loading != 109;
+			break;
 	}
-
-	if(version == "1.06")
-	{
-		vars.loading=(current.loading !=70);
-	}
-
-	if(version == "1.05")
-	{
-		vars.loading =(current.loading !=109);
-	}
-	
-	if(version == "1.04")
-	{
-		vars.loading =(current.loading !=70);
-	}
-
 }
 
 exit
 {
-    timer.IsGameTimePaused = true;
+	timer.IsGameTimePaused = true;
 }
 
 isLoading
 {	
 	return vars.loading;
 }
-
