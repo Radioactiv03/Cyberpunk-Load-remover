@@ -30,7 +30,7 @@ init
 update
 {
 	switch (version) {
-		case "1.04": case "1.06": case "1.11":
+		case "1.04": case "1.06": case "1.1":
 			vars.loading = current.loading != 70;
 			break;
 		case "1.05":
