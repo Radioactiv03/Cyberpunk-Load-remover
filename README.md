@@ -1,6 +1,6 @@
 # Cyberpunk-Load-remover
 
-The Load remover is currently for Steam & gog version 1.04-1.1
+The Load remover is currently for Steam & gog version 1.04-1.11
 I will be updating on subsequent version if it breaks.
 
 Patch notes:
@@ -15,9 +15,9 @@ Patch notes:
 Autosplitter 0.1 is available
 
 
-22/02/21
+22/0121
 Patch 1.1 Comes out- Load remover patched with help from Meta 
 
-28/02/21
+28/0121
 Patch 1.11 Comes out- Load remover patched to work
 Autosplitter pointer found by Meta trying to integrate it now
