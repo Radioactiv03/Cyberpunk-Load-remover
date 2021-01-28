@@ -1,3 +1,7 @@
+state("Cyberpunk2077","1.11")
+{
+	byte loading : 0x3C80F00;
+}
 state("Cyberpunk2077", "1.1")
 {
 	byte loading : 0x3C80F00;
@@ -27,10 +31,11 @@ init
 	//timer.IsGameTimePaused = false;
 }
 
+
 update
 {
 	switch (version) {
-		case "1.04": case "1.06": case "1.1":
+		case "1.04": case "1.06": case "1.1": case "1.11":
 			vars.loading = current.loading != 70;
 			break;
 		case "1.05":
