@@ -15,9 +15,13 @@ Patch notes:
 Autosplitter 0.1 is available
 
 
-22/0121
+22/01/21
 Patch 1.1 Comes out- Load remover patched with help from Meta 
 
-28/0121
+28/01/21
 Patch 1.11 Comes out- Load remover patched to work
 Autosplitter pointer found by Meta trying to integrate it now
+
+05/02/21
+Patch 1.12 comes out - Load remover patched to work
+Auto splitter pretty much finished
