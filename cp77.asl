@@ -1,3 +1,7 @@
+state("Cyberpunk2077","1.12")
+{
+	byte loading : 0x3C80F10;
+}
 state("Cyberpunk2077","1.11")
 {
 	byte loading : 0x3C80F00;
@@ -35,7 +39,7 @@ init
 update
 {
 	switch (version) {
-		case "1.04": case "1.06": case "1.1": case "1.11":
+		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12":
 			vars.loading = current.loading != 70;
 			break;
 		case "1.05":
