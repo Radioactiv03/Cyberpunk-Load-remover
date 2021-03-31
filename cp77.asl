@@ -140,7 +140,7 @@ startup
 		{"05f_fight_cyberninja","To Oda // Started the Oda Fight"}, // Moves To Oda - Oda Fight
 		{"05k_flee","Oda Fight // GTFO of the parade"}, // Moves Oda Fight - Takemura Hideout
 		{"07a_guard_door","Takemura Hideout // Escaped, motel cutscene starts"}, // Moves Takemura Hideout - Meet Hanako at Embers
-		{"04_talk_hanako","Meet Hanako at Embers // Reach Hanako at the top of Embers"}, // Moves Meet Hanako at Embers - The Worst Ending
+		{"05_leave_restaurant","Meet Hanako at Embers // Reach Hanako at the top of Embers"}, // Moves Meet Hanako at Embers - The Worst Ending
 		// Manual split for The Worst Ending
 	};
 	
