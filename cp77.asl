@@ -4,6 +4,14 @@ Shoutout to Kuno for bein a lad and helping out with splitting logic*/
 //Thanks to Drek and Moowell for being my guinea pigs during the testing phase, and dealing with the janky splitting of early builds xD
 //Thanks to nicnacnic for finding the 1.12 objective pointer, very epic
 
+//Note: When scanning for objective pointer, search for a string with utf-16 and case sensitive UNCHECKED
+
+state("Cyberpunk2077","1.21")
+{
+	byte loading : 0x3D5C760;
+	string50 objective : 0x49E5930, 0x158, 0x28, 0x118, 0x0;
+}
+
 state("Cyberpunk2077","1.2")
 {
 	byte loading : 0x3D58630, 0xE8;
@@ -177,6 +185,9 @@ update
 //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
+		case "1.21":
+			vars.loading = current.loading !=2;
+			break;
 		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12": case "1.2":
 			vars.loading = current.loading != 70;
 			break;
