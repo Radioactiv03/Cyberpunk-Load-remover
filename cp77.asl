@@ -3,18 +3,15 @@ Written by Meta and Radioactive03.
 Shoutout to Kuno for bein a lad and helping out with splitting logic*/
 //Thanks to Drek and Moowell for being my guinea pigs during the testing phase, and dealing with the janky splitting of early builds xD
 //Thanks to nicnacnic for finding the 1.12 objective pointer, very epic
-
-//Note: When scanning for objective pointer, search for a string with utf-16 and case sensitive UNCHECKED
-
-state("Cyberpunk2077","1.21")
+state("Cyberpunk2077","1.23")
 {
-	byte loading : 0x3D5C760;
-	string50 objective : 0x49E5930, 0x158, 0x28, 0x118, 0x0;
+	byte loading : 0x3D6A6F0;
+	string50 objective : 0x049F56F0, 0xB8, 0x118, 0x0;
 }
 
 state("Cyberpunk2077","1.2")
 {
-	byte loading : 0x3D58630, 0xE8;
+	byte loading : 0x3D6A720, 0xE8;
 	string50 objective : 0x49E1170, 0xB8, 0x118, 0x0;
 }
 
@@ -53,6 +50,8 @@ state("Cyberpunk2077", "1.04")
 
 startup
   {
+	    vars.TimerStart = (EventHandler) ((s, e) => timer.IsGameTimePaused = true);
+        timer.OnStart += vars.TimerStart;
 	  	refreshRate=30;
 		if (timer.CurrentTimingMethod == TimingMethod.RealTime)
 // Asks user to change to game time if LiveSplit is currently set to Real Time.
@@ -185,10 +184,7 @@ update
 //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "1.21":
-			vars.loading = current.loading !=2;
-			break;
-		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12": case "1.2":
+		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12": case "1.2": case "1.21": case "1.23":
 			vars.loading = current.loading != 70;
 			break;
 		case "1.05":
@@ -222,4 +218,9 @@ exit
 isLoading
 {	
 	return vars.loading;
+}
+
+shutdown
+{
+    timer.OnStart -= vars.TimerStart;
 }
