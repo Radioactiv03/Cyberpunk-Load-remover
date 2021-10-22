@@ -3,6 +3,12 @@ Written by Meta and Radioactive03.
 Shoutout to Kuno for bein a lad and helping out with splitting logic*/
 //Thanks to Drek and Moowell for being my guinea pigs during the testing phase, and dealing with the janky splitting of early builds xD
 //Thanks to nicnacnic for finding the 1.12 objective pointer, very epic
+state("Cyberpunk2077","1.31")
+{
+	byte loading : 0x3E78570;
+	string50 objective : 0x04B73B30, 0x158, 0x118, 0x0;
+}
+
 state("Cyberpunk2077","1.23")
 {
 	byte loading : 0x3D6A6F0;
@@ -137,7 +143,7 @@ startup
 		{"05c_talk_to_netrunner","GIM Skip // Reach the Netwatch Agent"}, // Moves from GIM Skip - Meet Brigitte
 		{"05b_talk_to_queen","Meet Brigitte // Enter Cyberspace with Brigitte"}, // Moves from Meet Brigitte - Meet Alt
 		{"01_talk_with_ripper","Meet Alt // Finish at the Ripperdoc during Never Fade Away"}, // Moves from Meet Alt - Kill Arasaka
-		{"05a_call_lift","Kill Arasaka 1 // Killed all Arasaka enemies in Atlantis"}, // Moves from Kill Arasaka - Escape Atlantis
+		{"05c_pick_parking","Kill Arasaka 1 // Killed all Arasaka enemies in Atlantis"}, // Moves from Kill Arasaka - Escape Atlantis
 		{"02_escape_atlantis","Escape Atlantis // Enter Johnnys Porsche"}, // Moves from Escape Atlantis - Never Fade Away
 		{"04_check_on_alt","Never Fade Away // Finish killing the Arasaka enemies in the room with Alt"}, // Moves from Never Fade Away - Transmission
 		{"02b_leave_the_chapel","Transmission // Completed Transmission"}, // Moves Transmission - Arasaka Industrial Park
@@ -184,7 +190,7 @@ update
 //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12": case "1.2": case "1.21": case "1.23":
+		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12": case "1.2": case "1.21": case "1.23": case "1.31":
 			vars.loading = current.loading != 70;
 			break;
 		case "1.05":
@@ -195,6 +201,7 @@ update
 //for debugging purposes
     print(current.objective);
     print(old.objective);
+//  print(current.loading.ToString());
 }
 
 
