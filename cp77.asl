@@ -3,6 +3,13 @@ Written by Meta and Radioactive03.
 Shoutout to Kuno for bein a lad and helping out with splitting logic*/
 //Thanks to Drek and Moowell for being my guinea pigs during the testing phase, and dealing with the janky splitting of early builds xD
 //Thanks to nicnacnic for finding the 1.12 objective pointer, very epic
+
+state("Cyberpunk2077","1.52")
+{
+	byte loading : 0x3E65A00;
+	string50 objective : 0x04B6F878, 0xB8, 0x118, 0x0;
+}
+
 state("Cyberpunk2077","1.31")
 {
 	byte loading : 0x3E78570;
@@ -190,7 +197,7 @@ update
 //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12": case "1.2": case "1.21": case "1.23": case "1.31":
+		case "1.04": case "1.06": case "1.1": case "1.11": case "1.12": case "1.2": case "1.21": case "1.23": case "1.31": case "1.52":
 			vars.loading = current.loading != 70;
 			break;
 		case "1.05":
@@ -199,9 +206,9 @@ update
 	}
 
 //for debugging purposes
-    print(current.objective);
-    print(old.objective);
-//  print(current.loading.ToString());
+ //   print(current.objective);
+ //   print(old.objective);
+    print(current.loading.ToString());
 }
 
 
