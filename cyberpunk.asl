@@ -31,42 +31,65 @@ state("Cyberpunk2077","1.63")
 }
 state("Cyberpunk2077","1.61")
 {
+	byte loading : 0x3F1FBF0;
 	string50 objective : 0x04C42170, 0xB8, 0x118, 0x0;
 }
 
 state("Cyberpunk2077","1.52")
 {
+	byte loading : 0x3E65A00;
 	string50 objective : 0x04B6F878, 0xB8, 0x118, 0x0;
 }
 
 state("Cyberpunk2077","1.31")
 {
+	byte loading : 0x3E78570;
 	string50 objective : 0x04B73B30, 0x158, 0x118, 0x0;
 }
 
 state("Cyberpunk2077","1.23")
 {
+	byte loading : 0x3D6A6F0;
 	string50 objective : 0x049F56F0, 0xB8, 0x118, 0x0;
 }
 
 state("Cyberpunk2077","1.2")
 {
+	byte loading : 0x3D6A720, 0xE8;
 	string50 objective : 0x49E1170, 0xB8, 0x118, 0x0;
 }
 
 state("Cyberpunk2077","1.12")
 {
+	byte loading : 0x3C80F10;
 	string50 objective : 0x048E30F8, 0x40, 0x18, 0xE30, 0x8, 0xB8, 0x118, 0x0;
 }
 
 state("Cyberpunk2077","1.11")
 {
+	byte loading : 0x3C80F00;
 	string50 objective : 0x04320A50, 0x260, 0x28, 0x8, 0x38, 0xB8, 0x118, 0x0;
 }
 
 state("Cyberpunk2077", "1.1")
 {
+	byte loading : 0x3C80F00;
     string50 objective : 0x04320A50, 0x260, 0x28, 0x8, 0x38, 0xB8, 0x118, 0x0;
+}
+
+state("Cyberpunk2077", "1.06")
+{
+	byte loading : 0x3C7EF40;
+}
+
+state("Cyberpunk2077", "1.05")
+{
+	int loading : 0x3C7EF75;
+}
+
+state("Cyberpunk2077", "1.04")
+{
+	byte loading : 0x3CBF140;
 }
 
 
@@ -185,30 +208,25 @@ init
 {
 	version = modules.First().FileVersionInfo.ProductVersion;
 	vars.loading = false;
-	
+	vars.LoadingPtr = IntPtr.Zero;
 	var module = modules.First();
 	var scanner = new SignatureScanner(game, module.BaseAddress, module.ModuleMemorySize);
-	vars.LoadingPtr = scanner.Scan(new SigScanTarget(2, "89??????????C6????????????E8????????4584??4889") { 
-	OnFound = (process, scanners, addr) => addr + 0x4 + process.ReadValue<int>(addr)
-	});
 	if(version == "2.0")
 	{
 		vars.LoadingPtr = scanner.Scan(new SigScanTarget(2, "89??????????F0????????????????48FF??33??4889??????????E8????????4584") { 
 		OnFound = (process, scanners, addr) => addr + 0x4 + process.ReadValue<int>(addr)
 		});
+		if (vars.LoadingPtr == IntPtr.Zero)
+		{
+        	throw new Exception("Game engine not initialized - retrying");
+		}
 	}
 
 	
-	if (vars.LoadingPtr == IntPtr.Zero)
-	{
-        	throw new Exception("Game engine not initialized - retrying");
-	}
+
 	
 	vars.loadingWatcher = new MemoryWatcher<int>(vars.LoadingPtr);
 }
-
-
-
 
 update
 {
@@ -217,7 +235,7 @@ update
     {
       vars.SetTextComponent("Current Objective", (current.objective)); 
     }
-	vars.loading = vars.loadingWatcher.Current == 10;
+	
 }
 
 start
@@ -244,8 +262,11 @@ exit
 }
 
 isLoading
-{	
-	return vars.loading;
+{	if(version == "2.0")
+	{
+		return vars.loadingWatcher.Current == 10;
+	}
+	return current.loading != 70;
 }
 
 shutdown
